@@ -7,6 +7,7 @@ const { isAuthProfile} = require("../../middleware/profile-auth");
 const router = express.Router()
 
 router.get("/profile/:id", profile);
+router.get("/id/:id", getUserById);
 router.post("/register", register);
 router.post("/login", login);
 router.get("/profile", [isAuth], profile); 

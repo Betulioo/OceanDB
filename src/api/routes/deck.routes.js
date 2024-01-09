@@ -4,7 +4,7 @@ const upload = require("../../middleware/upload.cloudy")
 const router = express.Router()
 
 router.get("/", getDeck);
-router.get("/:id", getDeckById);
+router.get("/id/:id", getDeckById);
 router.post("/", postDeck);
 router.get("/:deckName", getDeckByName);
 router.put("/:id", putDeck);
