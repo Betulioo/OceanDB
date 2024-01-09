@@ -2,18 +2,18 @@ const Deck = require("../models/deck.model");
 
 const getDeck = async (req, res) => {
   try {
-    const deck = await Deck.find();
+    const deck = await Deck.find().populate("cards");
 
-    return res.status(200).json(Deck);
+    return res.status(200).json(deck);
   } catch (error) {
     return res.status(500).json(error);
   }
 };
 
-const getDeckById = async (res, req) => {
+const getDeckById = async (req, res) => {
   try {
     const { id } = req.params;
-    const deck = await Deck.findById(id);
+    const deck = await Deck.findById(id).populate("cards");
     if (!deck) {
       return res
         .status(404)
@@ -63,7 +63,7 @@ const putDeck = async (req, res) => {
     }
     return res.status(200).json(updateDeck);
   } catch (error) {
-    return res.status(500).json(error, {message: `There was an error: ${error}`})
+    return res.status(500).json(error)
   }
 };
 const deleteDeck = async (req, res) => {
@@ -81,7 +81,7 @@ const deleteDeck = async (req, res) => {
 const getDeckByName = async (req, res) => {
   try {
     const { deckName } = req.params;
-    const deck = await Deck.find({ name: deckName });
+    const deck = await Deck.find({ name: deckName }).populate("cards");
     return res.status(200).json(deck);
   } catch {
     return res.status(500).json(error);
