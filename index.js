@@ -4,6 +4,7 @@ const routesCard = require("./src/api/routes/card.routes");
 const routesDeck = require("./src/api/routes/deck.routes");
 const routesCollection = require("./src/api/routes/collection.routes");
 const routesUser = require("./src/api/routes/user.routes");
+const routesScore = require("./src/api/routes/score.routes");
 
 const env = require("dotenv");
 const cors = require("cors");
@@ -32,6 +33,8 @@ server.use("/deck", routesDeck);
 server.use("/collection", routesCollection);
 
 server.use("/user", routesUser);
+server.use("/score", routesScore);
+
 
 
 server.disable("x-powered-by");
