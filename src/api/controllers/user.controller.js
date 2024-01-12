@@ -15,7 +15,7 @@ const getUser = async (req, res) => {
 const getUserById = async (req, res) => {
   try {
     const {id} = req.params;
-    console.log(id);
+    // console.log(id);
     const user = await User.findById(id);
        return res.status(200).json(user);
   } catch (error) {
@@ -50,6 +50,8 @@ const login = async (req, res) => {
   try {
     const userInfo = req.body;
     const userDB = await validateEmailDB(userInfo.email);
+    // console.log(userDB);
+
     if (!userDB) {
       return res.json({ success: false, message: "Email does not exist" });
     }
@@ -57,13 +59,16 @@ const login = async (req, res) => {
       return res.json({ success: false, message: "Password does not match" });
     }
 
-    const token = generateToken(userDB._id, userDB.email);
+    const token = generateToken(userDB._id, userDB.email, userDB.roll, userDB.collection);
+    // console.log(token);
+
     return res.json({
       success: true,
       message: "Log in successfully completed",
       token: token,
       userInfo: userDB,
     });
+
   } catch (error) {
     return res.status(500).json(error);
 
@@ -71,6 +76,8 @@ const login = async (req, res) => {
 };
 const profile = async (req, res) => {
   try {
+    // console.log(req.userProfile);
+
     return res.status(200).json(req.userProfile);
   } catch (error) {
     return res.status(500).json(error);
@@ -86,7 +93,7 @@ const putUser = async (req, res) => {
     //   videogameBody.image = req.file.path;
     // }
     //---- here ends This is for cloudinary route -----
-    console.log("hello");
+    // console.log("hello");
     const { id } = req.params;
     const putUser = new User(req.body);
     putUser._id = id;

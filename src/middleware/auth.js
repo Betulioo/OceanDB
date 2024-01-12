@@ -9,7 +9,7 @@ const isAuth = async (req, res, next) => {
     }
     const token = auth.split(" ")[1];
     const tokenVerified = verifyToken(token);
-    console.log(tokenVerified);
+    // console.log(tokenVerified);
     if (!tokenVerified.id) {
       return res
         .status(400)
@@ -17,7 +17,7 @@ const isAuth = async (req, res, next) => {
     }
     const userProfile = await User.findById(tokenVerified.id);
     req.userProfile = userProfile;
-    console.log(tokenVerified.id);
+    // console.log(tokenVerified.id);
     next();
   } catch (error) {
     return res.status(500).json(error)
@@ -33,7 +33,7 @@ const isAdmin = async (req, res, next) => {
     }
     const token = auth.split(" ")[1];
     const tokenVerified = verifyToken(token);
-    console.log(tokenVerified);
+    // console.log(tokenVerified);
 
     if (!tokenVerified.id) {
       return res

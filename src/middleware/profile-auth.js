@@ -17,7 +17,7 @@ const isAuthProfile = async (req, res, next) => {
     //   const userProfile = await User.findById(tokenVerified.id);
 
     req.userProfile = tokenVerified.id;
-    console.log(req.userProfile);
+    // console.log(req.userProfile);
 
     next();
   } catch (error) {

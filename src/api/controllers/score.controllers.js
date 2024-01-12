@@ -79,7 +79,7 @@ const deleteScore = async (req, res) => {
 const getScoreByName = async (req, res) => {
   try {
     const { scoreName } = req.params;
-    console.log(scoreName);
+    // console.log(scoreName);
     const Score = await Score.find({ name: scoreName });
     return res.status(200).json(Score);
   } catch {

@@ -79,7 +79,7 @@ const deleteCard = async (req, res) => {
 const getCardByName = async (req, res) => {
   try {
     const { cardName } = req.params;
-    console.log(cardName);
+    // console.log(cardName);
     const card = await Card.find({ name: cardName });
     return res.status(200).json(card);
   } catch {
