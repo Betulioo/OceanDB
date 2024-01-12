@@ -8,7 +8,7 @@ const userSchema = new Schema({
     password: { type: String, required: true },
     username: { type: String },
     role: { type: String, default: "explorer", enum: ["admin", "explorer"] },
-    collection: [{ type: Schema.ObjectId, ref: "Collection" }]
+    collection: { type: Schema.ObjectId, ref: "Collection" }
 
 }, {
     collection: "User"

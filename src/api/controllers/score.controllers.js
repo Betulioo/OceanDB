@@ -2,7 +2,7 @@ const Score = require("../models/score.model");
 
 const getScore = async (req, res) => {
   try {
-    const score = await Score.find();
+    const score = await Score.find().populate("userId");
 
     return res.status(200).json(score);
   } catch (error) {

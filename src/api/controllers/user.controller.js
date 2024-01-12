@@ -5,7 +5,7 @@ const { generateToken } = require("../../utils/jwt");
 
 const getUser = async (req, res) => {
   try {
-    const user = await User.find();
+    const user = await User.find().populate("collection");
     return res.status(200).json(user);
   } catch (error) {
     return res.status(500).json(error);
@@ -78,4 +78,30 @@ const profile = async (req, res) => {
   }
 };
 
-module.exports = { register, login, profile, getUser, getUserById };
+const putUser = async (req, res) => {
+  try {
+    //---- This is for cloudinary route -----
+    // console.log(req.file.path);
+    // if (req.file.path) {
+    //   videogameBody.image = req.file.path;
+    // }
+    //---- here ends This is for cloudinary route -----
+    console.log("hello");
+    const { id } = req.params;
+    const putUser = new User(req.body);
+    putUser._id = id;
+    const updateUser = await User.findByIdAndUpdate(
+      id,
+      putUser,
+      { new: true }
+    );
+    if (!updateUser){
+        return res.status(404).json({ message: `No User with ID: ${id} was found! :(` })
+    }
+    return res.status(200).json(updateUser);
+  } catch (error) {
+    return res.status(500).json(error, {message: `There was an error: ${error}`})
+  }
+};
+
+module.exports = { register, login, profile, getUser, getUserById, putUser };

@@ -7,7 +7,9 @@ const scoreSchema = new Schema(
     score: { type: String, required: true },
     time: { type: Number },
     attempts: { type: Number },
-    date: {type: Date}
+    userId: { type: Schema.ObjectId, ref: "User" },
+    date: {type: Date},
+
   },
   {
     collection: "Score",
