@@ -10,14 +10,12 @@ const getCard = async (req, res) => {
   }
 };
 
-const getCardById = async (res, req) => {
+const getCardById = async (req, res) => {
   try {
     const { id } = req.params;
     const card = await Card.findById(id);
     if (!card) {
-      return res
-        .status(404)
-        .json({ message: `No Card with ID: ${id} was found! :(` });
+      return res.status(404).json({ message: `No Card with ID: ${id} was found! :(` });
     } else {
       return res.status(200).json(card);
     }
@@ -81,6 +79,7 @@ const deleteCard = async (req, res) => {
 const getCardByName = async (req, res) => {
   try {
     const { cardName } = req.params;
+    // console.log(cardName);
     const card = await Card.find({ name: cardName });
     return res.status(200).json(card);
   } catch {

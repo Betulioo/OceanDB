@@ -8,7 +8,7 @@ const validatePassword = (pass) => {
 
 const validateEmailDB = async (emailUser) => {
     try {
-        const validateEmail = await User.findOne({ email: emailUser })
+        const validateEmail = await User.findOne({ email: emailUser }).populate("collection")
         return validateEmail;
     } catch (error) {
         console.log(error)

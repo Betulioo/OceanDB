@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const collectionSchema = new Schema(
   {
-    name: { type: String, require: true },
+    name: { type: String, default: "My Collection", require: true },
     deckId: [{ type: Schema.ObjectId, ref: "Deck" }],
     userId: { type: Schema.ObjectId, ref: "User" },
   },

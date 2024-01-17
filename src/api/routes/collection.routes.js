@@ -4,7 +4,7 @@ const upload = require("../../middleware/upload.cloudy")
 const router = express.Router();
 
 router.get("/id/:id", getCollectionById);
-router.get("/:collectionName", getCollectionByName);
+router.get("/name/:collectionName", getCollectionByName);
 router.get("/", getCollection);
 router.post("/", postCollection);
 router.put("/:id", putCollection);

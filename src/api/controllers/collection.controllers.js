@@ -2,7 +2,7 @@ const Collection = require("../models/collection.model");
 
 const getCollection = async (req, res) => {
     try {
-        const collection = await Collection.find().populate("videogames");
+        const collection = await Collection.find().populate("deckId userId");
         if(!collection){
             return res.status(404).json({ message: `No Collection  was found! :(` })
         }
@@ -13,10 +13,10 @@ const getCollection = async (req, res) => {
     }
 };
 
-const getCollectionById = async ()=>{
+const getCollectionById = async (req,res)=>{
     try {
         const {id} = req.params;
-        const collection = await Collection.findById(id);
+        const collection = await Collection.findById(id).populate("deckId userId");
         if(!collection){
             return res.status(404).json({ message: `No Collection with ID: ${id} was found! :(` })
         }
@@ -77,7 +77,7 @@ const deleteCollection = async (req, res) => {
 const getCollectionByName = async (req, res) => {
     try {
         const { collectionName } = req.params;
-        const collection = await Collection.find({ name: collectionName });
+        const collection = await Collection.find({ name: collectionName }).populate("deckId userId");
         return res.status(200).json(collection)
     } catch {
         return res.status(500).json(error)
