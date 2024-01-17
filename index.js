@@ -26,7 +26,6 @@ server.use(cors());
 
 server.use(express.json());
 connectDb();
-server.use("/", getCollection);
 server.use("/card", routesCard);
 server.use("/deck", routesDeck);
 
@@ -34,6 +33,7 @@ server.use("/collection", routesCollection);
 
 server.use("/user", routesUser);
 server.use("/score", routesScore);
+server.use("/", getCollection);
 
 
 
