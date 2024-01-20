@@ -1,5 +1,5 @@
 const User = require("../models/user.model");
-const { validateEmailDB, validatePassword } = require("../../utils/validator");
+const { validateEmailDB, validatePassword, validateUsernameDB } = require("../../utils/validator");
 const bycrypt = require("bcrypt");
 const { generateToken } = require("../../utils/jwt");
 
@@ -49,7 +49,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   try {
     const userInfo = req.body;
-    const userDB = await validateEmailDB(userInfo.email);
+    const userDB = await validateUsernameDB(userInfo.username);
     // console.log(userDB);
 
     if (!userDB) {

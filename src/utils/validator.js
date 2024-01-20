@@ -15,4 +15,13 @@ const validateEmailDB = async (emailUser) => {
     }
 
 }
-module.exports = { validateEmailDB, validatePassword }
+const validateUsernameDB = async (usernameUser) => {
+    try {
+        const validateUserName = await User.findOne({ username: usernameUser }).populate("collection")
+        return validateUserName;
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+module.exports = { validateEmailDB, validatePassword, validateUsernameDB}
