@@ -59,7 +59,7 @@ const login = async (req, res) => {
       return res.json({ success: false, message: "Password does not match" });
     }
 
-    const token = generateToken(userDB._id, userDB.email, userDB.roll, userDB.collection);
+    const token = generateToken(userDB._id, userDB.email, userDB.roll, userDB.collection, userDB.username);
     // console.log(token);
 
     return res.json({
