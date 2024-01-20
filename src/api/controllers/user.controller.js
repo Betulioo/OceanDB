@@ -27,8 +27,8 @@ const getUserById = async (req, res) => {
 const register = async (req, res) => {
   try {
     const userBody = new User(req.body);
-    const valEmail = await validateEmailDB(req.body.email);
-    if (!valEmail) {
+    const valUsername = await validateUsernameDB(req.body.username);
+    if (!valUsername) {
       if (validatePassword(req.body.password)) {
         userBody.password = bycrypt.hashSync(userBody.password, 10);
         const createduser = await userBody.save();
